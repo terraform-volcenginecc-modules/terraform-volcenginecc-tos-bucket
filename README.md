@@ -1,88 +1,88 @@
 # terraform-volcenginecc-tos-bucket
 
-Terraform Module scaffold for the VolcengineCC provider.
+## 1. Overview
 
-> Status: Scaffold only. The Terraform implementation for this repository is
-> not available yet, and this repository is not ready for production use.
+Terraform module for managing Volcengine TOS BUCKET resources with the `volcenginecc` provider. The caller owns provider authentication, region configuration, and external resources passed by ID.
 
-## Overview
+## 2. Usage
 
-This repository reserves the module name `volcengine/tos-bucket/volcenginecc`.
+```hcl
+module "tos_bucket" {
+  source  = "terraform-volcenginecc-modules/tos-bucket/volcenginecc"
+  version = "~> 1.0"
 
-The module is intended to provide a reusable Terraform abstraction for the
-`tos-bucket` scenario using the `volcengine/volcenginecc` provider.
+  # Set the required module inputs for your environment.
+}
+```
 
-Current scope:
+## 3. Examples
 
-- Repository and module scaffold only.
-- No Terraform resources or data sources are currently managed.
-- No production-readiness or real-cloud validation claim is made.
+- `basic`: independently runnable basic configuration.
+- `complete`: independently runnable complete configuration.
 
-## Usage
-
-The module implementation is not available yet. A runnable configuration will
-be added together with the first implementation release.
-
-Provider authentication and region configuration must be supplied by the
-caller. Do not commit credentials, access keys, secrets, Terraform state, or
-plan files.
-
-## Examples
-
-Examples will be added when the module implementation is available.
-
-Planned examples:
-
-- `examples/basic`
-- `examples/complete`
-
-## Requirements
+## 4. Requirements
 
 | Name | Version |
 |---|---|
-| Terraform | To be defined with the first implementation |
-| `volcengine/volcenginecc` | To be defined with the first implementation |
+| Terraform | `>= 1.5.7` |
+| OpenTofu | `>= 1.11.8` |
 
-## Providers
+## 5. Providers
 
 | Name | Source |
 |---|---|
 | `volcenginecc` | `volcengine/volcenginecc` |
 
-## Resources
+## 6. Resources
 
-No resources or data sources are currently managed.
+| Name | Description |
+|---|---|
+| `volcenginecc_tos_bucket` | Module-defined volcenginecc_tos_bucket. |
+| `volcenginecc_tos_bucket_cors` | Module-defined volcenginecc_tos_bucket_cors. |
+| `volcenginecc_tos_bucket_encryption` | Module-defined volcenginecc_tos_bucket_encryption. |
+| `volcenginecc_tos_bucket_website` | Module-defined volcenginecc_tos_bucket_website. |
+| `volcenginecc_tos_bucket_realtime_log` | Module-defined volcenginecc_tos_bucket_realtime_log. |
 
-The resource inventory will be documented before the first release.
+## 7. Inputs
 
-## Inputs
+| Name | Description |
+|---|---|
+| `bucket_name` | Module-defined bucket_name. |
+| `acl` | Module-defined acl. |
+| `allow_public_write` | Module-defined allow_public_write. |
+| `allow_public_read` | Module-defined allow_public_read. |
+| `allow_public_policy` | Module-defined allow_public_policy. |
+| `allow_wildcard_policy_actions` | Module-defined allow_wildcard_policy_actions. |
+| `storage_class` | Module-defined storage_class. |
+| `bucket_type` | Module-defined bucket_type. |
+| `az_redundancy` | Module-defined az_redundancy. |
+| `versioning_status` | Module-defined versioning_status. |
+| `project_name` | Module-defined project_name. |
+| `policy_json` | Module-defined policy_json. |
+| `tags` | Module-defined tags. |
+| `lifecycle_rules` | Module-defined lifecycle_rules. |
+| `cors_rules` | Module-defined cors_rules. |
+| `encryption` | Module-defined encryption. |
+| `website` | Module-defined website. |
+| `realtime_log` | Module-defined realtime_log. |
 
-No input variables are currently defined.
+## 8. Outputs
 
-All inputs will document their type, default value, required status,
-validation, ownership, and replacement behavior when implemented.
+| Name | Description |
+|---|---|
+| `bucket_name` | Module-defined bucket_name. |
+| `bucket_id` | Module-defined bucket_id. |
+| `location` | Module-defined location. |
+| `extranet_endpoint` | Module-defined extranet_endpoint. |
+| `bucket_domain_name` | Module-defined bucket_domain_name. |
+| `intranet_endpoint` | Module-defined intranet_endpoint. |
+| `website_id` | Module-defined website_id. |
+| `cors_id` | Module-defined cors_id. |
+| `encryption_id` | Module-defined encryption_id. |
+| `realtime_log_id` | Module-defined realtime_log_id. |
 
-## Outputs
+## 9. Notes
 
-No outputs are currently defined.
-
-Outputs will document their exact semantics when implemented.
-
-## Notes
-
-- This repository is currently a scaffold and is not a publishable functional
-  module.
-- Real-cloud validation has not been performed.
-- Provider limitations and unsupported scenarios will be documented before
-  release.
-- Resource ownership, import behavior, replacement behavior, cost risks, and
-  cleanup procedures must be documented before the first release.
-
-## Security
-
-Please report security issues according to the [Security Policy](SECURITY.md).
-Do not disclose security vulnerabilities through public issues.
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE).
+- Configure credentials using supported provider mechanisms; do not put access keys in module files.
+- Review replacement behavior and provider constraints before applying changes.
+- Run `terraform plan` after apply and confirm that the second plan has no changes.
